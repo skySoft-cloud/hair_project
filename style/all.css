@@ -1,0 +1,26 @@
+body{
+    background-color: #eee5de;
+}
+a{
+    min-width: 100px;
+    color: #000;
+    text-decoration: none;
+}
+a:hover{
+    color: #3d7d69;
+}
+.carousel-item img {
+    width: 100%;
+}
+
+.demo-card {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+h6{
+    color: #966;
+    font-weight: 700;
+}

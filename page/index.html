@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>密发网</title>
+    <link rel="stylesheet" href="../style/bootstrap.min.css">
+    <link rel="stylesheet" href="../style/all.css">
+</head>
+<body>
+<div class="container-fluid mb-5">
+    <div class="row mt-3">
+        <div class="col-md-12 d-flex">
+            <!--logo-->
+            <div class="col-md-3 offset-md-1">
+                <p>LOGO</p>
+                <!--<img src="../img/page_img" alt="logo">-->
+            </div>
+            <!--联系方式-->
+            <div class="col-md-7 d-flex flex-column align-items-end">
+                <p>TEL:15828171726</p>
+                <p>QQ:1046568540</p>
+            </div>
+        </div>
+    </div>
+    <!--轮播图-->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div id="hair_slider" class="carousel slide" data-ride="carousel">
+                <!-- 指示符 -->
+                <ul class="carousel-indicators">
+                    <li data-target="#hair_slider" data-slide-to="0" class="active"></li>
+                    <li data-target="#hair_slider" data-slide-to="1"></li>
+                    <li data-target="#hair_slider" data-slide-to="2"></li>
+                </ul>
+                <!-- 轮播图片 -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://static.runoob.com/images/mix/img_nature_wide.jpg">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg">
+                    </div>
+                </div>
+                <!-- 左右切换按钮 -->
+                <a class="carousel-control-prev" href="#hair_slider" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#hair_slider" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--服务事项-->
+    <div class="row mt-3">
+        <div class="col-md-10 m-auto d-flex justify-content-between flex-wrap pt-4 pb-4">
+            <div class="demo-card mt-3"></div>
+            <div class="demo-card mt-3"></div>
+            <div class="demo-card mt-3"></div>
+            <div class="demo-card mt-3"></div>
+            <div class="demo-card mt-3"></div>
+            <div class="demo-card mt-3"></div>
+        </div>
+    </div>
+    <!--热点文章-->
+    <div class="row mt-3">
+        <div id="hot_article_section" class="col-md-10 m-auto bg-light pt-4 pb-4">
+            <h6 class="pl-2">热点文章</h6>
+            <div class="d-flex flex-wrap justify-content-between">
+                <div class="col-md-3 text-left mt-2">
+                    <a href="">植发可以用别人的毛囊吗？</a>
+                </div>
+                <div class="col-md-3 text-left mt-2">
+                    <a href="">植发几大注意点</a>
+                </div>
+                <div class="col-md-3 text-left mt-2">
+                    <a href="">防脱发的秘诀</a>
+                </div>
+                <div class="col-md-3 text-left mt-2">
+                    <a href="">生活中的方式</a>
+                </div>
+                <div class="col-md-3 text-left mt-2">
+                    <a href="">防脱发的秘诀</a>
+                </div>
+                <div class="col-md-3 text-left mt-2">
+                    <a href="">植发几大注意点</a>
+                </div>
+                <div class="col-md-3 text-left mt-2">
+                    <a href="">防脱发的秘诀</a>
+                </div>
+                <div class="col-md-3 text-left mt-2">
+                    <a href="">植发可以用别人的毛囊吗？</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--头发疏密示意图-->
+    <div class="row mt-3">
+        <div class="col-md-10 m-auto bg-light pt-4 pb-4">
+            <h6 class="pl-2">头发疏密示意图</h6>
+            A schematic diagram of hair loss and density
+        </div>
+    </div>
+    <!--专家团队-->
+    <div class="row mt-3">
+        <div class="col-md-10 m-auto bg-light pt-4 pb-4">
+            <h6 class="pl-2">专家团队</h6>
+            Professional Team
+        </div>
+    </div>
+    <!--植发案例-->
+    <div class="row mt-3">
+        <div class="col-md-10 m-auto bg-light pt-4 pb-4">
+            <h6 class="pl-2">植发案例</h6>
+            Case of hair transplant
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="../script/jquery-3.3.1.min.js"></script>
+<!--<script type="text/javascript" src="../script/popover.js"></script>-->
+<script type="text/javascript" src="../script/bootstrap.min.js"></script>
+<script type="text/javascript">
+    (function ($, win) {
+
+        var getHotArticle;
+
+        /**
+         * 获取热点文章列表
+         */
+        getHotArticle = function () {
+            // 发起ajax请求文章列表数据
+            $.ajax({
+                url: "",
+                type: "",
+                data: {},
+                // 成功后处理
+                success: function (res_data) {
+
+                }
+            })
+        };
+
+
+    })($, window)
+</script>
+</body>
+</html>
