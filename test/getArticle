@@ -1,0 +1,30 @@
+{
+	"state": 1,
+	"data": {
+		"articleList": [{
+				"articleId": "1",
+				"articleName": "养生植发",
+				"createBy": "Cloud chen",
+				"createTime": "2018-09-29"
+			},
+			{
+				"articleId": "2",
+				"articleName": "迅速增加头发",
+				"createBy": "Hyman Hu",
+				"createTime": "2018-10-10"
+			},
+			{
+				"articleId": "3",
+				"articleName": "秃顶治疗",
+				"createBy": "Hyman Hu",
+				"createTime": "2018-11-01"
+			},
+			{
+				"articleId": "4",
+				"articleName": "浓发黑发",
+				"createBy": "Cloud chen",
+				"createTime": "2018-12-01"
+			}
+		]
+	}
+}

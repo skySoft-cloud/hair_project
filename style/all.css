@@ -24,3 +24,10 @@ h6{
     color: #966;
     font-weight: 700;
 }
+.logo-img{
+    height:70px;
+    width: auto;
+}
+.display-none{
+    display: none;
+}

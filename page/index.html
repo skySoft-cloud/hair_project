@@ -13,8 +13,7 @@
         <div class="col-md-12 d-flex">
             <!--logo-->
             <div class="col-md-3 offset-md-1">
-                <p>LOGO</p>
-                <!--<img src="../img/page_img" alt="logo">-->
+                <img class="logo-img" src="../img/logo.jpg" alt="logo">
             </div>
             <!--联系方式-->
             <div class="col-md-7 d-flex flex-column align-items-end">
@@ -70,32 +69,40 @@
     <div class="row mt-3">
         <div id="hot_article_section" class="col-md-10 m-auto bg-light pt-4 pb-4">
             <h6 class="pl-2">热点文章</h6>
-            <div class="d-flex flex-wrap justify-content-between">
-                <div class="col-md-3 text-left mt-2">
-                    <a href="">植发可以用别人的毛囊吗？</a>
-                </div>
-                <div class="col-md-3 text-left mt-2">
-                    <a href="">植发几大注意点</a>
-                </div>
-                <div class="col-md-3 text-left mt-2">
-                    <a href="">防脱发的秘诀</a>
-                </div>
-                <div class="col-md-3 text-left mt-2">
-                    <a href="">生活中的方式</a>
-                </div>
-                <div class="col-md-3 text-left mt-2">
-                    <a href="">防脱发的秘诀</a>
-                </div>
-                <div class="col-md-3 text-left mt-2">
-                    <a href="">植发几大注意点</a>
-                </div>
-                <div class="col-md-3 text-left mt-2">
-                    <a href="">防脱发的秘诀</a>
-                </div>
-                <div class="col-md-3 text-left mt-2">
-                    <a href="">植发可以用别人的毛囊吗？</a>
-                </div>
+            <div id="article_container" class="d-flex flex-wrap justify-content-between">
+                <!--<div class="col-md-3 text-left mt-2">-->
+                <!--<a href="">植发可以用别人的毛囊吗？</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-left mt-2">-->
+                <!--<a href="">植发几大注意点</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-left mt-2">-->
+                <!--<a href="">防脱发的秘诀</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-left mt-2">-->
+                <!--<a href="">生活中的方式</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-left mt-2">-->
+                <!--<a href="">防脱发的秘诀</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-left mt-2">-->
+                <!--<a href="">植发几大注意点</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-left mt-2">-->
+                <!--<a href="">防脱发的秘诀</a>-->
+                <!--</div>-->
+                <!--<div class="col-md-3 text-left mt-2">-->
+                <!--<a href="">植发可以用别人的毛囊吗？</a>-->
+                <!--</div>-->
             </div>
+        </div>
+        <div class="js-show-pagination col-md-10 m-auto bg-light pt-4 pb-4 display-none">
+            <nav aria-label="Page navigation">
+                <ul class="pagination d-flex justify-content-end">
+                    <li id="prev" class="page-item"><a class="page-link text-center">上一页</a></li>
+                    <li id="next" class="page-item"><a class="page-link text-center">下一页</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
     <!--头发疏密示意图-->
@@ -127,29 +134,121 @@
 
 <script type="text/javascript" src="../script/jquery-3.3.1.min.js"></script>
 <!--<script type="text/javascript" src="../script/popover.js"></script>-->
-<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>-->
 <script type="text/javascript" src="../script/bootstrap.min.js"></script>
 <script type="text/javascript">
     (function ($, win) {
 
-        var getHotArticle;
+        var getHotArticle,
+                pageTurningEvent,
+                clickArticle,
+                global = {
+                    init_article_data: [],
+                    init_page: 1
+                };
 
         /**
-         * 获取热点文章列表
+         * 获取热点文章列表并显示
          */
         getHotArticle = function () {
             // 发起ajax请求文章列表数据
             $.ajax({
-                url: "",
-                type: "",
-                data: {},
+                url: 1 == 0 ? "/fair/article/list" : "../test/getArticle",
+                type: "POST",
                 // 成功后处理
                 success: function (res_data) {
-
+                    // 获取文章列表数据
+                    var json_date = JSON.parse(res_data),
+                            article_data = json_date["data"]["articleList"];
+                    // 保存下来初始数据
+                    global["init_article_data"] = article_data;
+                    // 1. 如果文章条目小于等于16条，就直接显示在页面并且不显示分页按钮
+                    if (article_data.length <= 2) {
+                        renderList(article_data);
+                    } else {
+                        // 2.如果文章条目大于16条，显示分页按钮
+                        var one_page_article = article_data.slice(0, 2);
+                        global.max_page = Number.isInteger(global.init_article_data.length / 2) ? (global.init_article_data.length / 2) : (Math.floor(global.init_article_data.length / 2) + 1);
+                        renderList(one_page_article);
+                        $(".js-show-pagination").show();
+                    }
                 }
             })
         };
 
+        /**
+         * 点击上一页、下一页
+         */
+        pageTurningEvent = function () {
+            $("#prev").on("click", function () {
+                // 如果当前页数是第一页，就不用重新渲染
+                if (global.init_page == 1) {
+                    return false;
+                } else {
+                    // 当前不是第一页，就 -1
+                    global.init_page -= 1;
+                    freshList();
+                }
+            });
+            $("#next").on("click", function () {
+                // 如果当前页数是最后一页，就不用重新渲染
+                if (global.init_page == global.max_page) {
+                    return false;
+                } else {
+                    // 当前不是第一页，就 +1
+                    global.init_page += 1;
+                    freshList();
+                }
+            });
+        };
+
+        /**
+         * 点击文章列表
+         */
+        clickArticle = function () {
+            $("#article_container").on("click", "div", function () {
+                $.ajax({
+                    url: 1 == 0 ? ("/fair/article/list?"+this.id) : "../test/getArticleDetails",
+                    type: "GET",
+                    // 成功后处理
+                    success: function (res_data) {
+                        console.log(JSON.parse(res_data)["data"]["article"]["content"])
+                    }
+                })
+            })
+
+        };
+
+        getHotArticle();
+        pageTurningEvent();
+        clickArticle();
+
+        /**
+         * 刷新文章列表的方法
+         */
+        function freshList() {
+            // 根据页数显示获取当前的文章列表
+            var cur_article_data = global.init_article_data.slice((global.init_page * 2) - 2, global.init_page * 2);
+            // 渲染文章页面
+            renderList(cur_article_data)
+        }
+
+        /**
+         * 渲染文章列表的方法
+         * @param render_data 需要渲染的数据
+         */
+        function renderList(render_data) {
+            var article_str = "",
+                    $article_container = $("#article_container");
+            render_data.forEach(function (list_item) {
+                article_str += '<div id="' + list_item["articleId"] + '" class="col-md-3 text-left mt-2">'
+                        + '<a href="javascript:void(0);">' + list_item['articleName'] + '</a>'
+                        + '</div>'
+            });
+            // 清空当前文章列表
+            $article_container.empty();
+            $article_container.append(article_str);
+        }
 
     })($, window)
 </script>
