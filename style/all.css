@@ -19,6 +19,34 @@ a:hover{
     border: 1px solid #ffffff;
     border-radius: 5px;
     background-color: #ffffff;
+    margin-bottom: 10px;
+}
+.demo-card1 {
+    width: 200px;
+    height: 240px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin-bottom: 50px;
+}
+.demo-card1 img{
+    height:200px;
+    width:100%;
+}
+.demo-card1 span{
+    font-size:14px;
+}
+.demo-card1 p{
+    padding-top:14px;
+    font-size:14px;
+    margin-bottom:14px;
+}
+.demo-card img{
+    height:100px;
+    width:100%;
+}
+.demo-card span{
+    font-size:14px;
 }
 h6{
     color: #966;
@@ -30,4 +58,22 @@ h6{
 }
 .display-none{
     display: none;
+}
+.hair-demo img{
+    width:200px;
+    height:200px;
+}
+.hair-demo p{
+    margin-top: 14px;
+}
+footer div{
+    background: #9d68b7;
+    padding:20px 0;
+}
+footer span{
+    font-size:14px;
+    color: #fff;
+}
+#menu-list p:hover{
+    cursor: pointer;
 }

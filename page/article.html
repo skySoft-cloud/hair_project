@@ -1,0 +1,101 @@
+<style>
+    .hot-title {
+        font-size: 16px;
+        color: #9d68b7;
+        font-weight: 700;
+    }
+
+    #menu_list p {
+        font-size: 14px;
+    }
+
+    #menu_list p:hover {
+        font-size: 14px;
+        color: #3d7d69;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    #ar_title {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .wrap-author {
+        font-size: 13px;
+        color: #555;
+    }
+
+    #ar_content {
+        font-size: 14px;
+    }
+
+    .min-cus {
+        min-height: 400px;
+    }
+</style>
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="col-md-10 m-auto bg-light pt-4 pb-4">
+            <h6 class="pl-2"><a href="index.html">首页</a> >最新动态>文章详情</h6>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="col-md-10 m-auto bg-light pt-4 pb-4 d-flex flex-wrap align-items-start min-cus">
+            <div class="col-md-8 article-section d-flex flex-column align-items-center">
+                <h5 id="ar_title"></h5>
+                <p class="wrap-author">作者：<span id="author"></span> 时间：<span id="time"></span></p>
+                <p id="ar_content"></p>
+            </div>
+            <div id="menu_list" class="col-md-4 d-flex flex-column align-items-left">
+                <h5 class="hot-title mb-3">热点文章</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    (function ($, win) {
+
+        var initPage, clickArticle;
+
+        initPage = function () {
+            var menu_str = "";
+            // 渲染菜单
+            Global.init_article_data.forEach(function (item) {
+                menu_str += "<p id='" + item['articleId'] + "'>" + item["articleName"] + "</p>"
+            });
+            $("#menu_list").append(menu_str);
+
+            $("#ar_title").text(Global.article["articleName"]);
+            $("#author").text(Global.article["createBy"]);
+            $("#time").text(Global.article["createTime"]);
+            $("#ar_content").text(Global.article["content"]);
+
+        };
+
+        clickArticle = function () {
+            $("#menu_list").on("click", "p", function () {
+                $.ajax({
+                    url: 1 == 0 ? ("/fair/article/list?" + this.id) : "../test/getArticleDetails",
+                    type: "GET",
+                    // 成功后处理
+                    success: function (res_data) {
+                        var json_data = JSON.parse(res_data);
+                        var cur_article = json_data["data"]["article"];
+                        $("#ar_title").text(Global.article["articleName"]);
+                        $("#author").text(Global.article["createBy"]);
+                        $("#time").text(Global.article["createTime"]);
+                        $("#ar_content").text(Global.article["content"]);
+                    }
+                })
+            })
+
+        };
+        initPage();
+        clickArticle();
+
+
+    })($, window)
+</script>
