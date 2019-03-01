@@ -29,9 +29,17 @@
     #ar_content {
         font-size: 14px;
     }
-
-    .min-cus {
+    .min-cus{
         min-height: 400px;
+
+    }
+
+    .min-cus-border{
+        min-height: 400px;
+        border-right: 1px dashed;
+    }
+    .cus-m{
+        margin-left: 50px;
     }
 </style>
 <div class="row mt-3">
@@ -44,12 +52,12 @@
 <div class="row mt-3">
     <div class="col-md-12">
         <div class="col-md-10 m-auto bg-light pt-4 pb-4 d-flex flex-wrap align-items-start min-cus">
-            <div class="col-md-8 article-section d-flex flex-column align-items-center">
+            <div class="col-md-8 article-section d-flex flex-column align-items-center min-cus-border">
                 <h5 id="ar_title"></h5>
                 <p class="wrap-author">作者：<span id="author"></span> 时间：<span id="time"></span></p>
                 <p id="ar_content"></p>
             </div>
-            <div id="menu_list" class="col-md-4 d-flex flex-column align-items-left">
+            <div id="menu_list" class="col-md-3 d-flex flex-column align-items-left cus-m">
                 <h5 class="hot-title mb-3">热点文章</h5>
             </div>
         </div>

@@ -100,7 +100,7 @@
       <div class="row mt-3">
           <div id="hot_article_section" class="col-md-10 m-auto bg-light pt-4 pb-4">
               <h6 class="pl-2">热点文章</h6>
-              <div id="article_container" class="d-flex flex-wrap justify-content-between mt-3">
+              <div id="article_container" class="d-flex flex-wrap justify-content-start mt-3">
                   <!--<div class="col-md-3 text-left mt-2">-->
                   <!--<a href="">植发可以用别人的毛囊吗？</a>-->
                   <!--</div>-->
@@ -246,12 +246,12 @@
                     global["init_article_data"] = article_data;
                     Global["init_article_data"] = article_data;
                     // 1. 如果文章条目小于等于16条，就直接显示在页面并且不显示分页按钮
-                    if (article_data.length <= 2) {
+                    if (article_data.length <= 16) {
                         renderList(article_data);
                     } else {
                         // 2.如果文章条目大于16条，显示分页按钮
-                        var one_page_article = article_data.slice(0, 2);
-                        global.max_page = Number.isInteger(global.init_article_data.length / 2) ? (global.init_article_data.length / 2) : (Math.floor(global.init_article_data.length / 2) + 1);
+                        var one_page_article = article_data.slice(0, 16);
+                        global.max_page = Number.isInteger(global.init_article_data.length / 16) ? (global.init_article_data.length / 16) : (Math.floor(global.init_article_data.length / 16) + 1);
                         renderList(one_page_article);
                         $(".js-show-pagination").show();
                     }
