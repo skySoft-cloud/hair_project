@@ -314,7 +314,7 @@
          */
         function freshList() {
             // 根据页数显示获取当前的文章列表
-            var cur_article_data = global.init_article_data.slice((global.init_page * 2) - 2, global.init_page * 2);
+            var cur_article_data = global.init_article_data.slice((global.init_page * 16) - 16, global.init_page * 16);
             // 渲染文章页面
             renderList(cur_article_data)
         }
