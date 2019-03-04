@@ -92,10 +92,10 @@
                     success: function (res_data) {
                         var json_data = JSON.parse(res_data);
                         var cur_article = json_data["data"]["article"];
-                        $("#ar_title").text(Global.article["articleName"]);
-                        $("#author").text(Global.article["createBy"]);
-                        $("#time").text(Global.article["createTime"]);
-                        $("#ar_content").text(Global.article["content"]);
+                        $("#ar_title").text(cur_article["articleName"]);
+                        $("#author").text(cur_article["createBy"]);
+                        $("#time").text(cur_article["createTime"]);
+                        $("#ar_content").text(cur_article["content"]);
                     }
                 })
             })
